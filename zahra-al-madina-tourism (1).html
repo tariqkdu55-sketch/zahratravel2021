@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zahra Al Madina Tourism | Dubai's Premier Tour Operator</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0D1B2A;
+    --gold: #C9A96E;
+    --gold-light: #E8C98A;
+    --pearl: #F5F0E8;
+    --teal: #2A7F7F;
+    --charcoal: #2C2C2C;
+    --white: #ffffff;
+    --text-muted: #8A8A8A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--pearl);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 5vw;
+    background: linear-gradient(to bottom, rgba(13,27,42,0.95), transparent);
+    backdrop-filter: blur(4px);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    text-decoration: none;
+  }
+  .nav-logo span { display: block; font-size: 0.65rem; font-family: 'Inter', sans-serif; font-weight: 300; color: var(--pearl); letter-spacing: 0.18em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--pearl); text-decoration: none; font-size: 0.85rem; font-weight: 400; letter-spacing: 0.06em; opacity: 0.85; transition: opacity 0.2s, color 0.2s; }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy);
+    border: none; padding: 0.6rem 1.4rem;
+    font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    padding: 10rem 5vw 5rem;
+    position: relative; overflow: hidden;
+    background: linear-gradient(160deg, #0D1B2A 0%, #102035 50%, #0a2a2a 100%);
+  }
+  .hero-dunes {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    width: 100%; height: 55%;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .hero-stars {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none; overflow: hidden;
+  }
+  .star {
+    position: absolute; width: 2px; height: 2px;
+    background: white; border-radius: 50%;
+    animation: twinkle var(--dur, 3s) ease-in-out infinite var(--delay, 0s);
+    opacity: 0;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; } 50% { opacity: var(--brightness, 0.6); }
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.4rem;
+    opacity: 0; animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    font-weight: 700; line-height: 1.05;
+    color: var(--pearl);
+    max-width: 14ch;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.9s ease 0.5s forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.15rem); font-weight: 300;
+    color: rgba(245,240,232,0.75); max-width: 44ch;
+    line-height: 1.7; margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.9s ease 0.7s forwards;
+  }
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.9s ease 0.9s forwards;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 0.9rem 2.2rem; font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1.5px solid rgba(201,169,110,0.5); color: var(--gold);
+    padding: 0.9rem 2.2rem; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: transparent; cursor: pointer; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold-light); }
+  .hero-badge {
+    position: absolute; right: 6vw; bottom: 12%;
+    width: 120px; height: 120px;
+    border: 1px solid rgba(201,169,110,0.3); border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    opacity: 0; animation: fadeIn 1s ease 1.3s forwards;
+  }
+  .hero-badge .badge-num { font-size: 2rem; font-weight: 700; color: var(--gold); }
+  .hero-badge .badge-txt { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,240,232,0.6); text-align: center; line-height: 1.4; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 6rem 5vw; }
+  .section-eyebrow {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.9rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700; line-height: 1.2;
+    color: var(--pearl); margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem; color: rgba(245,240,232,0.65);
+    max-width: 56ch; line-height: 1.75;
+  }
+  .divider {
+    width: 48px; height: 2px; background: var(--gold);
+    margin: 1.5rem 0;
+  }
+
+  /* ── SERVICES ── */
+  .services { background: #0a141f; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5px; margin-top: 3.5rem;
+    background: rgba(201,169,110,0.12);
+  }
+  .service-card {
+    background: #0a141f; padding: 2.4rem 2rem;
+    transition: background 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .service-card:hover { background: #0f1e2d; }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    font-size: 2rem; margin-bottom: 1.2rem; display: block;
+  }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 600;
+    color: var(--pearl); margin-bottom: 0.7rem;
+  }
+  .service-card p {
+    font-size: 0.9rem; color: rgba(245,240,232,0.6);
+    line-height: 1.7;
+  }
+
+  /* ── ABOUT ── */
+  .about { background: var(--navy); }
+  .about-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-frame {
+    width: 100%; aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #1a3a3a 0%, #0a2a1a 50%, #1a2a0a 100%);
+    position: relative; overflow: hidden;
+  }
+  .about-img-frame svg {
+    width: 100%; height: 100%; opacity: 0.5;
+  }
+  .about-accent {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    width: 60%; background: var(--gold);
+    padding: 2rem; z-index: 2;
+  }
+  .about-accent .stat { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--navy); line-height: 1; }
+  .about-accent .stat-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(13,27,42,0.7); margin-top: 0.3rem; }
+  .about-text ul { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .about-text li {
+    display: flex; align-items: flex-start; gap: 0.9rem;
+    font-size: 0.92rem; color: rgba(245,240,232,0.75); line-height: 1.6;
+  }
+  .about-text li::before {
+    content: '◆'; color: var(--gold); font-size: 0.5rem;
+    margin-top: 0.45rem; flex-shrink: 0;
+  }
+
+  /* ── WHY US ── */
+  .why { background: #071218; }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem; margin-top: 3.5rem;
+  }
+  .why-item { text-align: center; }
+  .why-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 700;
+    color: transparent;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .why-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 600;
+    color: var(--pearl); margin: 0.6rem 0 0.5rem;
+  }
+  .why-item p {
+    font-size: 0.85rem; color: rgba(245,240,232,0.55); line-height: 1.65;
+  }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--navy); }
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 1.8rem; margin-top: 2rem; }
+  .contact-row { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .contact-icon {
+    width: 42px; height: 42px;
+    border: 1px solid rgba(201,169,110,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-row strong {
+    display: block; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.25rem;
+  }
+  .contact-row span {
+    font-size: 0.92rem; color: rgba(245,240,232,0.75); line-height: 1.5;
+  }
+  .contact-row a { color: rgba(245,240,232,0.75); text-decoration: none; }
+  .contact-row a:hover { color: var(--gold); }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-field label {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(245,240,232,0.5);
+  }
+  .form-field input, .form-field textarea, .form-field select {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,169,110,0.2);
+    color: var(--pearl); font-family: 'Inter', sans-serif; font-size: 0.9rem;
+    padding: 0.85rem 1rem; outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none; appearance: none;
+  }
+  .form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+    border-color: var(--gold);
+  }
+  .form-field textarea { resize: vertical; min-height: 110px; }
+  .form-field select option { background: var(--navy); }
+  .form-submit {
+    background: var(--gold); color: var(--navy);
+    border: none; padding: 1rem; font-family: 'Inter', sans-serif;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060e14; padding: 3rem 5vw;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    border-top: 1px solid rgba(201,169,110,0.12);
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--gold); font-weight: 700;
+  }
+  .footer-logo span { display: block; font-family: 'Inter', sans-serif; font-size: 0.62rem; color: rgba(245,240,232,0.4); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 300; margin-top: 0.2rem; }
+  footer p { font-size: 0.78rem; color: rgba(245,240,232,0.35); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.78rem; color: rgba(245,240,232,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero { padding: 8rem 5vw 4rem; }
+    .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-accent { right: 0; }
+    .hero-badge { display: none; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    Zahra Al Madina
+    <span>Tourism L.L.C · Dubai</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+97152422762" class="nav-cta">Call Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Stars -->
+  <div class="hero-stars" id="stars"></div>
+
+  <!-- Dune silhouette -->
+  <svg class="hero-dunes" viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,400 C0,400 0,280 180,260 C300,246 360,300 480,290 C600,280 640,220 800,200 C920,185 980,260 1100,250 C1220,240 1300,180 1440,160 L1440,400 Z" fill="#C9A96E"/>
+    <path d="M0,400 C0,400 60,350 200,320 C340,290 420,360 560,340 C700,320 760,270 900,260 C1040,250 1100,310 1240,295 C1360,282 1400,230 1440,210 L1440,400 Z" fill="#0a1e14" opacity="0.6"/>
+  </svg>
+
+  <p class="hero-eyebrow">Deira, Dubai · Est. 2021</p>
+  <h1 class="hero-title">
+    Journey Beyond<br><em>the Ordinary</em>
+  </h1>
+  <p class="hero-sub">
+    Zahra Al Madina Tourism crafts unforgettable private tours, desert safaris, and international travel experiences — tailored for every traveller passing through the UAE.
+  </p>
+  <div class="hero-actions">
+    <a href="#services" class="btn-primary">Explore Tours</a>
+    <a href="#contact" class="btn-ghost">Plan Your Trip</a>
+  </div>
+
+  <div class="hero-badge">
+    <span class="badge-num">3+</span>
+    <span class="badge-txt">Years of trusted service</span>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <p class="section-eyebrow">What We Offer</p>
+  <h2 class="section-title">Experiences Crafted<br>for Every Explorer</h2>
+  <div class="divider"></div>
+  <p class="section-sub">From the golden dunes of the Arabian desert to the turquoise shores of the East Coast — we take care of every detail.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🏜️</span>
+      <h3>Desert Safari</h3>
+      <p>Dune bashing, camel rides, and a traditional Bedouin camp experience under a star-filled Arabian sky.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🚁</span>
+      <h3>Private Tours</h3>
+      <p>Fully customised, exclusive tours of Dubai and the UAE with a dedicated guide — on your schedule, your way.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🌊</span>
+      <h3>East Coast Tours</h3>
+      <p>Discover Fujairah's ancient forts, pristine beaches, and emerald mountains on a curated day trip.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✈️</span>
+      <h3>International Packages</h3>
+      <p>Hand-picked international travel packages with competitive fares, visas, hotels, and transfers — all in one place.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🏢</span>
+      <h3>Corporate Tours</h3>
+      <p>Team-building excursions, MICE packages, and corporate retreats tailored for business groups of any size.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎫</span>
+      <h3>Ticketing & Visas</h3>
+      <p>Special fares on air tickets, visa processing, and travel documentation handled with expertise and speed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-img-frame">
+        <!-- Decorative Arabian illustration -->
+        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sky gradient -->
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0a1a2a"/>
+              <stop offset="100%" stop-color="#1a3a2a"/>
+            </linearGradient>
+            <linearGradient id="duneGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C9A96E"/>
+              <stop offset="100%" stop-color="#8A6A3E"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="500" fill="url(#skyGrad)"/>
+          <!-- Stars -->
+          <circle cx="50" cy="60" r="1.5" fill="white" opacity="0.8"/>
+          <circle cx="120" cy="40" r="1" fill="white" opacity="0.6"/>
+          <circle cx="200" cy="80" r="1.5" fill="white" opacity="0.9"/>
+          <circle cx="300" cy="50" r="1" fill="white" opacity="0.7"/>
+          <circle cx="360" cy="90" r="1.5" fill="white" opacity="0.5"/>
+          <circle cx="80" cy="110" r="1" fill="white" opacity="0.4"/>
+          <circle cx="250" cy="30" r="1" fill="white" opacity="0.8"/>
+          <!-- Moon -->
+          <circle cx="320" cy="70" r="28" fill="#C9A96E" opacity="0.35"/>
+          <circle cx="332" cy="62" r="22" fill="#0a1a2a" opacity="0.9"/>
+          <!-- Mosque silhouette -->
+          <rect x="140" y="240" width="120" height="120" fill="#0D1B2A"/>
+          <rect x="160" y="200" width="80" height="50" fill="#0D1B2A"/>
+          <!-- Main dome -->
+          <ellipse cx="200" cy="200" rx="45" ry="40" fill="#0D1B2A"/>
+          <!-- Minaret left -->
+          <rect x="130" y="190" width="18" height="90" fill="#0D1B2A"/>
+          <polygon points="130,190 148,190 139,165" fill="#0D1B2A"/>
+          <circle cx="139" cy="163" r="4" fill="#C9A96E" opacity="0.6"/>
+          <!-- Minaret right -->
+          <rect x="252" y="190" width="18" height="90" fill="#0D1B2A"/>
+          <polygon points="252,190 270,190 261,165" fill="#0D1B2A"/>
+          <circle cx="261" cy="163" r="4" fill="#C9A96E" opacity="0.6"/>
+          <!-- Crescent on dome -->
+          <circle cx="200" cy="165" r="10" fill="#C9A96E" opacity="0.5"/>
+          <circle cx="204" cy="162" r="7" fill="#0D1B2A" opacity="0.9"/>
+          <!-- Dunes -->
+          <path d="M0,500 C0,500 0,400 100,380 C180,364 220,420 300,400 C360,385 400,360 400,360 L400,500 Z" fill="url(#duneGrad)" opacity="0.8"/>
+          <path d="M0,500 C60,490 120,460 180,450 C260,437 320,470 400,455 L400,500 Z" fill="#8A6A3E" opacity="0.6"/>
+          <!-- Palm -->
+          <rect x="68" y="340" width="6" height="80" fill="#4A3020"/>
+          <ellipse cx="71" cy="338" rx="22" ry="10" fill="#2A5A20" opacity="0.8" transform="rotate(-20,71,338)"/>
+          <ellipse cx="71" cy="338" rx="22" ry="10" fill="#2A5A20" opacity="0.7" transform="rotate(15,71,338)"/>
+          <ellipse cx="71" cy="338" rx="22" ry="10" fill="#2A5A20" opacity="0.6" transform="rotate(50,71,338)"/>
+        </svg>
+      </div>
+      <div class="about-accent">
+        <div class="stat">UAE</div>
+        <div class="stat-label">Licensed Tour Operator</div>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <p class="section-eyebrow">About Us</p>
+      <h2 class="section-title">Rooted in Dubai,<br>Connected to the World</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Located in the heart of Deira on Naif Road, Zahra Al Madina Tourism has been serving travellers since 2021. We combine deep local knowledge with a passion for seamless, personalised travel.</p>
+      <ul>
+        <li>Licensed and registered tour operator in the UAE, committed to quality and compliance.</li>
+        <li>Strategically located in Deira — Dubai's historic trading hub — close to major hotels and transit links.</li>
+        <li>Specialists in tailoring experiences for individual travellers, families, and corporate groups.</li>
+        <li>Multilingual team ready to assist with every aspect of your journey, from visa to return ticket.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div style="text-align:center; max-width: 600px; margin: 0 auto;">
+    <p class="section-eyebrow">Why Zahra Al Madina</p>
+    <h2 class="section-title">Built on Trust,<br>Driven by Experience</h2>
+    <div class="divider" style="margin: 1.5rem auto;"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-num">100%</div>
+      <h4>Personalised Service</h4>
+      <p>No two trips are the same. Every itinerary is tailored to your preferences, budget, and travel style.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">24/7</div>
+      <h4>On-Ground Support</h4>
+      <p>Our team is always available to assist you before, during, and after your journey.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">50+</div>
+      <h4>Tour Destinations</h4>
+      <p>From the UAE's hidden gems to sought-after international destinations — we know the route.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-num">★★★★★</div>
+      <h4>Trusted by Travellers</h4>
+      <p>Consistently praised for reliability, warmth, and value — by travellers from across the globe.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <p class="section-eyebrow">Get in Touch</p>
+      <h2 class="section-title">Let's Plan Your<br>Next Adventure</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Reach out and our team will get back to you with a tailored proposal within 24 hours.</p>
+      <div class="contact-info">
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
+          <div>
+            <strong>Address</strong>
+            <span>Vidya Complex, Naif Road, 2nd Floor, Office 216<br>Deira, Al Murar, Dubai, UAE</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div>
+            <strong>Phone</strong>
+            <span><a href="tel:+97152422762">+971 52 422 2762</a></span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <strong>Website</strong>
+            <span><a href="https://www.zahraalmadina2021.com" target="_blank">zahraalmadina2021.com</a></span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <strong>Working Hours</strong>
+            <span>Sunday – Thursday: 9:30 AM – 6:30 PM<br>Friday – Saturday: Appointment only</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="contact-form">
+        <div class="form-field">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your full name">
+        </div>
+        <div class="form-field">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-field">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" placeholder="+971 XX XXX XXXX">
+        </div>
+        <div class="form-field">
+          <label>Tour Interest</label>
+          <select>
+            <option value="" disabled selected>Select a service</option>
+            <option>Desert Safari</option>
+            <option>Private Tour</option>
+            <option>East Coast Tour</option>
+            <option>International Package</option>
+            <option>Corporate Tour</option>
+            <option>Ticketing & Visa</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Message</label>
+          <textarea placeholder="Tell us about your travel dates, group size, and any special requirements…"></textarea>
+        </div>
+        <button class="form-submit" onclick="alert('Thank you! We will get back to you within 24 hours.')">Send Enquiry →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    Zahra Al Madina Tourism
+    <span>Licensed Tour Operator · Dubai, UAE</span>
+  </div>
+  <p>© 2024 Zahra Al Madina Tourism L.L.C · All rights reserved</p>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="https://www.zahraalmadina2021.com" target="_blank">Website</a>
+  </div>
+</footer>
+
+<script>
+  // Generate random stars in hero
+  const container = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.cssText = `
+      left: ${Math.random()*100}%;
+      top: ${Math.random()*70}%;
+      --dur: ${2 + Math.random()*4}s;
+      --delay: ${Math.random()*4}s;
+      --brightness: ${0.3 + Math.random()*0.7};
+    `;
+    container.appendChild(s);
+  }
+</script>
+</body>
+</html>
