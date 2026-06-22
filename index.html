@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Star Pizza Dubai – Al Karama</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #FFD600;
+    --gold-dim: #C9A800;
+    --red: #E63222;
+    --dark: #111111;
+    --dark2: #1A1A1A;
+    --dark3: #222222;
+    --light: #F5F5F5;
+    --muted: #888888;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--light);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(17,17,17,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 1.6rem;
+    letter-spacing: 0.04em; color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-logo .star-icon {
+    display: inline-block;
+    font-size: 1.2rem;
+    animation: spin-star 8s linear infinite;
+  }
+
+  @keyframes spin-star {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: #ccc; text-decoration: none; font-size: 0.9rem;
+    font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold); color: var(--dark);
+    padding: 0.55rem 1.4rem; border-radius: 4px;
+    font-weight: 700; font-size: 0.85rem;
+    text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #ffe033; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; place-items: center;
+    padding: 8rem 2rem 4rem;
+    position: relative; overflow: hidden;
+    text-align: center;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 70% 50% at 50% 60%, rgba(255,214,0,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(230,50,34,0.06) 0%, transparent 60%);
+  }
+
+  .hero-star-bg {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(200px, 40vw, 500px);
+    opacity: 0.04;
+    animation: spin-star 40s linear infinite;
+    pointer-events: none; user-select: none;
+    line-height: 1;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,214,0,0.12);
+    border: 1px solid rgba(255,214,0,0.3);
+    color: var(--gold);
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.4rem 1rem; border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: 0.3em;
+  }
+
+  .hero-title .gold { color: var(--gold); }
+  .hero-title .outline {
+    -webkit-text-stroke: 2px var(--light);
+    color: transparent;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: #aaa; font-weight: 400;
+    max-width: 480px; margin: 0 auto 2.5rem;
+    line-height: 1.6;
+  }
+
+  .hero-badges {
+    display: flex; align-items: center; justify-content: center;
+    gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem;
+  }
+
+  .badge {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.85rem; color: #bbb;
+  }
+
+  .badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+
+  .badge strong { color: var(--light); }
+
+  .hero-actions {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold); color: var(--dark);
+    padding: 0.9rem 2.2rem; border-radius: 6px;
+    font-weight: 700; font-size: 1rem;
+    text-decoration: none; letter-spacing: 0.03em;
+    transition: transform 0.15s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #ffe033; transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent; color: var(--light);
+    padding: 0.9rem 2.2rem; border-radius: 6px;
+    font-weight: 600; font-size: 1rem;
+    text-decoration: none; letter-spacing: 0.03em;
+    border: 1.5px solid #444;
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* STRIP */
+  .strip {
+    background: var(--gold);
+    padding: 0.75rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .strip-inner {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+  }
+
+  .strip-inner span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    color: var(--dark); text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 0 2rem;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.8rem);
+    text-transform: uppercase; line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .section-body {
+    color: #999; font-size: 1rem; max-width: 500px; line-height: 1.7;
+  }
+
+  /* MENU */
+  .menu-section { background: var(--dark2); }
+
+  .menu-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5px;
+    background: #2a2a2a;
+    border: 1.5px solid #2a2a2a;
+    border-radius: 8px; overflow: hidden;
+  }
+
+  .menu-card {
+    background: var(--dark2);
+    padding: 1.8rem;
+    position: relative;
+    transition: background 0.2s;
+    cursor: default;
+  }
+
+  .menu-card:hover { background: #202020; }
+
+  .menu-card-tag {
+    display: inline-block;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--dark); background: var(--gold);
+    padding: 0.2rem 0.6rem; border-radius: 3px;
+    margin-bottom: 1rem;
+  }
+
+  .menu-card-tag.new { background: var(--red); color: #fff; }
+
+  .menu-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.45rem; font-weight: 700;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+    letter-spacing: 0.02em;
+  }
+
+  .menu-card p {
+    font-size: 0.88rem; color: #888; line-height: 1.6; margin-bottom: 1.2rem;
+  }
+
+  .menu-card-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--gold);
+  }
+
+  .menu-card-price span { font-size: 0.85rem; font-weight: 400; color: #666; margin-left: 3px; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+
+  .stat {
+    padding: 1.5rem;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+  }
+
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.8rem; font-weight: 900;
+    color: var(--gold); line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label { font-size: 0.82rem; color: #777; font-weight: 500; }
+
+  .about-visual {
+    position: relative; aspect-ratio: 1;
+    border-radius: 8px; overflow: hidden;
+    background: var(--dark3);
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid #2a2a2a;
+  }
+
+  .big-star {
+    font-size: 12rem;
+    animation: spin-star 15s linear infinite;
+    filter: drop-shadow(0 0 40px rgba(255,214,0,0.3));
+    opacity: 0.8;
+  }
+
+  .about-visual-overlay {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, var(--dark3) 100%);
+  }
+
+  /* REVIEWS */
+  .reviews-section { background: var(--dark2); }
+
+  .stars-display {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .stars-display .stars { font-size: 2rem; letter-spacing: 0.1em; }
+  .stars-display .rating-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 4rem; font-weight: 900; color: var(--gold);
+    line-height: 1;
+  }
+  .stars-display .rating-sub { color: #666; font-size: 0.9rem; }
+
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .review-card {
+    background: var(--dark3);
+    padding: 1.5rem; border-radius: 6px;
+    border: 1px solid #2a2a2a;
+  }
+
+  .review-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 0.75rem; }
+  .review-text { color: #bbb; font-size: 0.9rem; line-height: 1.65; margin-bottom: 1rem; font-style: italic; }
+  .review-author { font-size: 0.78rem; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* LOCATIONS */
+  .locations-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .location-card {
+    background: var(--dark2);
+    border: 1px solid #2a2a2a;
+    border-radius: 8px; padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .location-card:hover { border-color: var(--gold-dim); }
+
+  .location-card::before {
+    content: '★';
+    position: absolute; top: -0.5rem; right: 1rem;
+    font-size: 6rem; color: rgba(255,214,0,0.04);
+    line-height: 1;
+  }
+
+  .location-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold-dim); margin-bottom: 0.75rem;
+  }
+
+  .location-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem; font-weight: 700;
+    text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+
+  .location-card p { color: #777; font-size: 0.88rem; line-height: 1.6; margin-bottom: 1.2rem; }
+
+  .location-detail {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.83rem; color: #888; margin-bottom: 0.4rem;
+  }
+
+  .location-detail .icon { color: var(--gold); font-size: 0.9rem; }
+
+  /* ORDER */
+  .order-section {
+    background: var(--gold);
+    text-align: center; padding: 5rem 2rem;
+  }
+
+  .order-section .section-title { color: var(--dark); }
+  .order-section p { color: #3a3000; margin: 1rem auto 2.5rem; max-width: 480px; font-size: 1.05rem; line-height: 1.6; }
+
+  .order-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .order-btn {
+    background: var(--dark); color: var(--gold);
+    padding: 1rem 2.5rem; border-radius: 6px;
+    font-weight: 700; font-size: 1rem;
+    text-decoration: none; letter-spacing: 0.03em;
+    border: 2px solid var(--dark);
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .order-btn:hover { background: #1a1a1a; }
+
+  .order-btn.alt {
+    background: transparent; color: var(--dark);
+    border-color: var(--dark);
+  }
+  .order-btn.alt:hover { background: rgba(0,0,0,0.08); }
+
+  /* FOOTER */
+  footer {
+    background: #0a0a0a;
+    padding: 3rem 2rem;
+    border-top: 1px solid #1e1e1e;
+  }
+
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 1.4rem;
+    color: var(--gold); letter-spacing: 0.05em;
+  }
+
+  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .footer-links a { color: #555; font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-copy { color: #444; font-size: 0.8rem; }
+
+  /* DISCOUNT BANNER */
+  .discount-banner {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+    background: var(--red); color: #fff;
+    padding: 1rem 1.5rem; border-radius: 8px;
+    max-width: 260px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    animation: slide-in 0.5s ease 2s both;
+  }
+
+  @keyframes slide-in {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .discount-banner h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem; font-weight: 900;
+    text-transform: uppercase; margin-bottom: 0.25rem;
+  }
+
+  .discount-banner p { font-size: 0.82rem; opacity: 0.85; line-height: 1.5; }
+
+  .discount-close {
+    position: absolute; top: 0.5rem; right: 0.75rem;
+    background: none; border: none; color: rgba(255,255,255,0.6);
+    font-size: 1.1rem; cursor: pointer; line-height: 1;
+  }
+  .discount-close:hover { color: #fff; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-visual { display: none; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+    .discount-banner { bottom: 1rem; right: 1rem; left: 1rem; max-width: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-logo .star-icon,
+    .hero-star-bg,
+    .big-star,
+    .strip-inner { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="star-icon">★</span> Star Pizza
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#locations">Locations</a></li>
+  </ul>
+  <a href="tel:0507638812" class="nav-cta">Order Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-star-bg">★</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span>★★★★★</span> 5.0 · Al Karama, Dubai
+    </div>
+    <h1 class="hero-title">
+      <span class="gold">Star</span><br>
+      <span class="outline">Pizza</span>
+    </h1>
+    <p class="hero-sub">Dubai's finest slice — crafted with passion, served hot. From Al Karama to Ras Al Khaimah.</p>
+    <div class="hero-badges">
+      <div class="badge"><div class="dot"></div><strong>AED 1–50</strong> &nbsp;Affordable</div>
+      <div class="badge"><div class="dot"></div>Open until <strong>12 AM</strong></div>
+      <div class="badge"><div class="dot"></div><strong>3 Branches</strong> in UAE</div>
+    </div>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">View Menu</a>
+      <a href="#locations" class="btn-secondary">Find a Branch</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-inner">
+    <span>★ Hot & Fresh</span><span>★ AED 1–50</span><span>★ Pickup & Delivery</span><span>★ Open Late</span><span>★ 3 UAE Branches</span><span>★ 5 Star Rated</span><span>★ Hot & Fresh</span><span>★ AED 1–50</span><span>★ Pickup & Delivery</span><span>★ Open Late</span><span>★ 3 UAE Branches</span><span>★ 5 Star Rated</span>
+  </div>
+</div>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="menu-header">
+      <div>
+        <div class="section-label">Our Specialties</div>
+        <h2 class="section-title">The Menu</h2>
+      </div>
+      <p class="section-body">Every pizza crafted with our secret Star sauce, loaded with premium toppings, and baked to perfection.</p>
+    </div>
+    <div class="menu-grid">
+
+      <div class="menu-card">
+        <div class="menu-card-tag">Signature</div>
+        <h3>Star Chicken Legend</h3>
+        <p>Grilled chicken, tomato sauce, cheese and our secret Star special sauce. The one that started it all.</p>
+        <div class="menu-card-price">AED 49 <span>/ Medium</span></div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-tag">Fan Favourite</div>
+        <h3>Kickers BBQ</h3>
+        <p>Grilled chicken, caramelised onion, smoky BBQ sauce and a drizzle of ranch. Rich, bold, unforgettable.</p>
+        <div class="menu-card-price">AED 45 <span>/ Medium</span></div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-tag new">New</div>
+        <h3>Spicy Arrabbiata</h3>
+        <p>Fiery arrabbiata base, jalapeños, mozzarella and fresh basil. For those who like it hot.</p>
+        <div class="menu-card-price">AED 38 <span>/ Medium</span></div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-tag">Classic</div>
+        <h3>Margherita Royal</h3>
+        <p>San Marzano tomato, buffalo mozzarella, fresh basil, extra virgin olive oil. Simply perfect.</p>
+        <div class="menu-card-price">AED 29 <span>/ Medium</span></div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-tag">Signature</div>
+        <h3>Star Meat Feast</h3>
+        <p>Beef pepperoni, spicy sausage, grilled chicken, bell peppers, mushrooms and Star sauce.</p>
+        <div class="menu-card-price">AED 49 <span>/ Medium</span></div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-card-tag">Value</div>
+        <h3>Mini Star</h3>
+        <p>Your choice of any classic topping combo, personal size. Perfect for a quick lunch or solo snack.</p>
+        <div class="menu-card-price">From AED 15 <span>/ Personal</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">Built on<br>Real Dough</h2>
+        <p class="section-body">Started with one oven and a simple belief: pizza in Dubai should be brilliant and affordable. Today, Star Pizza serves thousands of slices across 3 branches in Dubai and Ras Al Khaimah — and we're still using the same original recipe.</p>
+
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-label">UAE Branches</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">5.0</div>
+            <div class="stat-label">Google Rating</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">60+</div>
+            <div class="stat-label">5-Star Reviews</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">AED 1</div>
+            <div class="stat-label">Starting Price</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="big-star">★</div>
+        <div class="about-visual-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div class="container">
+    <div class="section-label">What People Say</div>
+    <h2 class="section-title">Reviews</h2>
+
+    <div class="stars-display">
+      <div class="rating-num">5.0</div>
+      <div>
+        <div class="stars">★★★★★</div>
+        <div class="rating-sub">Based on 60 Google Reviews</div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Veryyyy great super! The Star Chicken pizza is something else — I come back every week. Best value pizza in Karama."</p>
+        <div class="review-author">— Google Review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ordered delivery and it arrived piping hot. The BBQ Kickers pizza is ridiculously good for the price. Highly recommended!"</p>
+        <div class="review-author">— Google Review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Three branches and every single one delivers the same quality. That consistency is rare in Dubai. Star Pizza deserves more hype."</p>
+        <div class="review-author">— Google Review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section id="locations">
+  <div class="container">
+    <div class="section-label">Find Us</div>
+    <h2 class="section-title">3 Locations<br>Across UAE</h2>
+
+    <div class="locations-grid">
+
+      <div class="location-card">
+        <div class="location-num">Branch 01</div>
+        <h3>Al Karama, Dubai</h3>
+        <p>Our newest and most central branch in the heart of Karama — dine in or takeaway.</p>
+        <div class="location-detail"><span class="icon">⏰</span> Open · Closes 12 AM</div>
+        <div class="location-detail"><span class="icon">📞</span> 050 763 8812</div>
+        <div class="location-detail"><span class="icon">🛵</span> Delivery via Deliveroo</div>
+      </div>
+
+      <div class="location-card">
+        <div class="location-num">Branch 02</div>
+        <h3>Ras Al Khaimah</h3>
+        <p>Serving Al Dhait South and beyond — the original Star Pizza experience in RAK.</p>
+        <div class="location-detail"><span class="icon">⏰</span> Open · Closes 12 AM</div>
+        <div class="location-detail"><span class="icon">🛵</span> Delivery via Talabat</div>
+        <div class="location-detail"><span class="icon">📍</span> Al Dhait South, RAK</div>
+      </div>
+
+      <div class="location-card">
+        <div class="location-num">Branch 03</div>
+        <h3>Ras Al Khaimah II</h3>
+        <p>Our second RAK branch, bringing Star quality to more of the Northern Emirates.</p>
+        <div class="location-detail"><span class="icon">⏰</span> Open · Closes 12 AM</div>
+        <div class="location-detail"><span class="icon">📱</span> Follow @starpizzadubai</div>
+        <div class="location-detail"><span class="icon">💰</span> 30% Off — Limited Time</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ORDER CTA -->
+<section class="order-section">
+  <div class="container">
+    <div class="section-label" style="color: rgba(0,0,0,0.5);">Ready to eat?</div>
+    <h2 class="section-title">Order Your<br>Star Pizza</h2>
+    <p>Pickup in-store or get it delivered hot to your door. Available on Deliveroo and Talabat.</p>
+    <div class="order-buttons">
+      <a href="https://deliveroo.ae/en/menu/dubai/karama/star-pizza-karama" target="_blank" rel="noopener" class="order-btn">Order on Deliveroo</a>
+      <a href="https://www.talabat.com/uae/restaurant/740613/star-pizza-al-dhait-south" target="_blank" rel="noopener" class="order-btn">Order on Talabat</a>
+      <a href="tel:0507638812" class="order-btn alt">📞 Call to Order</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">★ Star Pizza</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#locations">Locations</a>
+      <a href="https://www.instagram.com/starpizzadubai/" target="_blank" rel="noopener">Instagram</a>
+      <a href="tel:0507638812">050 763 8812</a>
+    </nav>
+    <p class="footer-copy">© 2026 Star Pizza UAE. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- DISCOUNT POPUP -->
+<div class="discount-banner" id="discountBanner">
+  <button class="discount-close" onclick="document.getElementById('discountBanner').remove()" aria-label="Close">✕</button>
+  <h4>30% Off!</h4>
+  <p>Special discount on the full menu — limited time only across all 3 branches.</p>
+</div>
+
+</body>
+</html>
